@@ -5,6 +5,7 @@ from .models import Task
 from .serializers import TaskSerializer
 import json
 from django.urls import reverse
+import datetime
 
 tasks = []
 
@@ -38,7 +39,11 @@ def add_task(request:HttpRequest):
     return JsonResponse({"message": "Bad Request", "status_code": 400})
 
 cache = {}
-items = []
+items = [    
+    Task("Задача 1", "Описание первой задачи", datetime(2026, 5, 4, 9, 0), datetime(2026, 5, 4, 12, 0)),
+    Task("Задача 2", "Описание второй задачи", datetime(2026, 5, 5, 10, 0), datetime(2026, 5, 5, 15, 0)),
+    Task("Задача 3", "Описание третьей задачи", datetime(2026, 5, 6, 14, 0), datetime(2026, 5, 6, 18, 0))
+    ]
 
 def getItemById(request:HttpRequest, id):
     if len(items) < 0:
